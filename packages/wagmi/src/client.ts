@@ -256,6 +256,7 @@ export class Web3Modal extends Web3ModalScaffold {
           imageUrl: this.options?.chainImages?.[chain.id]
         }) as CaipNetwork
     )
+    console.log('syncRequestedNetworks: ', requestedCaipNetworks)
     this.setRequestedCaipNetworks(requestedCaipNetworks ?? [])
   }
 
@@ -398,6 +399,7 @@ export class Web3Modal extends Web3ModalScaffold {
       const { info, provider } = event.detail
       const connectors = this.getConnectors()
       const existingConnector = connectors.find(c => c.name === info.name)
+      console.log('eip6963EventHandler: ', existingConnector)
       if (!existingConnector) {
         this.addConnector({
           id: ConstantsUtil.EIP6963_CONNECTOR_ID,
@@ -418,6 +420,7 @@ export class Web3Modal extends Web3ModalScaffold {
       c => c.id === ConstantsUtil.EIP6963_CONNECTOR_ID
     ) as EIP6963Connector
 
+    console.log('listenEIP6963Connector: ', connector);
     if (typeof window !== 'undefined' && connector) {
       const handler = this.eip6963EventHandler.bind(this, connector)
       window.addEventListener(ConstantsUtil.EIP6963_ANNOUNCE_EVENT, handler)
@@ -430,6 +433,7 @@ export class Web3Modal extends Web3ModalScaffold {
       c => c.id === ConstantsUtil.EMAIL_CONNECTOR_ID
     ) as EmailConnector
 
+    console.log('listenEmailConnector: ', connector);
     if (typeof window !== 'undefined' && connector) {
       super.setLoading(true)
       const provider = await connector.getProvider()
