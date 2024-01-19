@@ -348,7 +348,7 @@ export class Web3Modal extends Web3ModalScaffold {
     const w3mConnectors: Connector[] = []
     wagmiConfig.connectors.forEach(({ id, name }) => {
       console.log(name);
-      if (![ConstantsUtil.EIP6963_CONNECTOR_ID, ConstantsUtil.EMAIL_CONNECTOR_ID].includes(id)) {
+      if (![ConstantsUtil.EIP6963_CONNECTOR_ID, ConstantsUtil.EMAIL_CONNECTOR_ID].includes(id) && name !== 'WalletConnect') {
         w3mConnectors.push({
           id,
           explorerId: PresetsUtil.ConnectorExplorerIds[id],
