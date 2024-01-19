@@ -120,6 +120,7 @@ export class Web3Modal extends Web3ModalScaffold {
           const nsMethods = ns?.[ConstantsUtil.EIP155]?.methods
           const nsChains = ns?.[ConstantsUtil.EIP155]?.chains
 
+          console.log('approvedCaipNetworkIds: ', nsChains)
           return {
             supportsAllNetworks: nsMethods?.includes(ConstantsUtil.ADD_CHAIN_METHOD),
             approvedCaipNetworkIds: nsChains
@@ -153,7 +154,6 @@ export class Web3Modal extends Web3ModalScaffold {
 
       connectExternal: async ({ id, provider, info }) => {
         const connector = wagmiConfig.connectors.find(c => c.id === id)
-        console.log('connectExternal: ', connector)
         if (!connector) {
           throw new Error('connectionControllerClient:connectExternal - connector is undefined')
         }
@@ -162,6 +162,7 @@ export class Web3Modal extends Web3ModalScaffold {
           connector.setEip6963Wallet?.({ provider, info })
         }
         const chainId = HelpersUtil.caipNetworkIdToNumber(this.getCaipNetwork()?.id)
+        console.log('connectExternal: ', connector)
 
         await connect({ connector, chainId })
       },
@@ -289,7 +290,7 @@ export class Web3Modal extends Web3ModalScaffold {
     if (chain) {
       const chainId = String(chain.id)
       const caipChainId: CaipNetworkId = `${ConstantsUtil.EIP155}:${chainId}`
-      console.log(chain.name);
+      console.log('syncNetwork: ', chain.name);
       this.setCaipNetwork({
         id: caipChainId,
         name: chain.name,
