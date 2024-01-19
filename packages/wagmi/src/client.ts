@@ -129,25 +129,25 @@ export class Web3Modal extends Web3ModalScaffold {
     }
 
     const connectionControllerClient: ConnectionControllerClient = {
-      // connectWalletConnect: async onUri => {
-      //   const connector = wagmiConfig.connectors.find(
-      //     c => c.id === ConstantsUtil.WALLET_CONNECT_CONNECTOR_ID
-      //   )
-      //   if (!connector) {
-      //     throw new Error('connectionControllerClient:getWalletConnectUri - connector is undefined')
-      //   }
+      connectWalletConnect: async onUri => {
+        const connector = wagmiConfig.connectors.find(
+          c => c.id === ConstantsUtil.WALLET_CONNECT_CONNECTOR_ID
+        )
+        if (!connector) {
+          throw new Error('connectionControllerClient:getWalletConnectUri - connector is undefined')
+        }
 
-      //   connector.on('message', event => {
-      //     if (event.type === 'display_uri') {
-      //       onUri(event.data as string)
-      //       connector.removeAllListeners()
-      //     }
-      //   })
+        connector.on('message', event => {
+          if (event.type === 'display_uri') {
+            onUri(event.data as string)
+            connector.removeAllListeners()
+          }
+        })
 
-      //   const chainId = HelpersUtil.caipNetworkIdToNumber(this.getCaipNetwork()?.id)
+        const chainId = HelpersUtil.caipNetworkIdToNumber(this.getCaipNetwork()?.id)
 
-      //   await connect({ connector, chainId })
-      // },
+        await connect({ connector, chainId })
+      },
 
       connectExternal: async ({ id, provider, info }) => {
         const connector = wagmiConfig.connectors.find(c => c.id === id)
@@ -213,7 +213,7 @@ export class Web3Modal extends Web3ModalScaffold {
 
     this.syncRequestedNetworks(chains)
 
-    this.syncConnectors(wagmiConfig)
+    // this.syncConnectors(wagmiConfig)
     this.syncEmailConnector(wagmiConfig)
     this.listenEIP6963Connector(wagmiConfig)
     this.listenEmailConnector(wagmiConfig)
