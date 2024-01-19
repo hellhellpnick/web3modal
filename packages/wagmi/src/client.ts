@@ -97,6 +97,7 @@ export class Web3Modal extends Web3ModalScaffold {
 
       async getApprovedCaipNetworksData() {
         const walletChoice = localStorage.getItem(WALLET_CHOICE_KEY)
+        console.log('getApprovedCaipNetworksData< walletChoice: ', walletChoice);
         if (walletChoice?.includes(ConstantsUtil.EMAIL_CONNECTOR_ID)) {
           return {
             supportsAllNetworks: false,
@@ -152,6 +153,7 @@ export class Web3Modal extends Web3ModalScaffold {
 
       connectExternal: async ({ id, provider, info }) => {
         const connector = wagmiConfig.connectors.find(c => c.id === id)
+        console.log('connectExternal: ', connector)
         if (!connector) {
           throw new Error('connectionControllerClient:connectExternal - connector is undefined')
         }
@@ -161,7 +163,6 @@ export class Web3Modal extends Web3ModalScaffold {
         }
         const chainId = HelpersUtil.caipNetworkIdToNumber(this.getCaipNetwork()?.id)
 
-        console.log('connectExternal: ', connector)
         await connect({ connector, chainId })
       },
 
@@ -367,7 +368,6 @@ export class Web3Modal extends Web3ModalScaffold {
     wagmiConfig.connectors.forEach(({ id, name }) => {
       // wallets.forEach(({ id, name }) => {
       if (![ConstantsUtil.EIP6963_CONNECTOR_ID, ConstantsUtil.EMAIL_CONNECTOR_ID].includes(id) && name != 'WalletConnect' && name != 'Browser Wallet' && name != 'EIP6963') {
-        console.log(name, id);
         w3mConnectors.push({
           id,
           explorerId: PresetsUtil.ConnectorExplorerIds[id],
@@ -378,6 +378,7 @@ export class Web3Modal extends Web3ModalScaffold {
         })
       }
     })
+    console.log(w3mConnectors);
 
     this.setConnectors(w3mConnectors)
   }
