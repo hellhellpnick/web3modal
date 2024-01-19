@@ -56,21 +56,21 @@ export const PresetsUtil = {
     [ConstantsUtil.COINBASE_CONNECTOR_ID]: '0c2840c3-5b04-4c44-9661-fbd4b49e1800',
     [ConstantsUtil.SAFE_CONNECTOR_ID]: '461db637-8616-43ce-035a-d89b8a1d5800',
     [ConstantsUtil.LEDGER_CONNECTOR_ID]: '54a1aa77-d202-4f8d-0fb2-5d2bb6db0300',
-    // [ConstantsUtil.WALLET_CONNECT_CONNECTOR_ID]: 'ef1a1fcf-7fe8-4d69-bd6d-fda1345b4400',
-    // [ConstantsUtil.INJECTED_CONNECTOR_ID]: '07ba87ed-43aa-4adf-4540-9e6a2b9cae00'
+    [ConstantsUtil.WALLET_CONNECT_CONNECTOR_ID]: 'ef1a1fcf-7fe8-4d69-bd6d-fda1345b4400',
+    [ConstantsUtil.INJECTED_CONNECTOR_ID]: '07ba87ed-43aa-4adf-4540-9e6a2b9cae00'
   } as Record<string, string>,
 
   ConnectorNamesMap: {
-    // [ConstantsUtil.INJECTED_CONNECTOR_ID]: 'Browser Wallet',
-    // [ConstantsUtil.WALLET_CONNECT_CONNECTOR_ID]: 'WalletConnect',
+    [ConstantsUtil.INJECTED_CONNECTOR_ID]: 'Browser Wallet',
+    [ConstantsUtil.WALLET_CONNECT_CONNECTOR_ID]: 'WalletConnect',
     [ConstantsUtil.COINBASE_CONNECTOR_ID]: 'Coinbase',
     [ConstantsUtil.LEDGER_CONNECTOR_ID]: 'Ledger',
     [ConstantsUtil.SAFE_CONNECTOR_ID]: 'Safe'
   } as Record<string, string>,
 
   ConnectorTypesMap: {
-    // [ConstantsUtil.INJECTED_CONNECTOR_ID]: 'INJECTED',
-    // [ConstantsUtil.WALLET_CONNECT_CONNECTOR_ID]: 'WALLET_CONNECT',
+    [ConstantsUtil.INJECTED_CONNECTOR_ID]: 'INJECTED',
+    [ConstantsUtil.WALLET_CONNECT_CONNECTOR_ID]: 'WALLET_CONNECT',
     [ConstantsUtil.EIP6963_CONNECTOR_ID]: 'ANNOUNCED',
     [ConstantsUtil.EMAIL_CONNECTOR_ID]: 'EMAIL'
   } as Record<string, ConnectorType>,
