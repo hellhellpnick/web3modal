@@ -129,65 +129,65 @@ export class Web3Modal extends Web3ModalScaffold {
     }
 
     const connectionControllerClient: ConnectionControllerClient = {
-      // connectWalletConnect: async onUri => {
-      //   const connector = wagmiConfig.connectors.find(
-      //     c => c.id === ConstantsUtil.WALLET_CONNECT_CONNECTOR_ID
-      //   )
-      //   if (!connector) {
-      //     throw new Error('connectionControllerClient:getWalletConnectUri - connector is undefined')
-      //   }
-
-      //   connector.on('message', event => {
-      //     if (event.type === 'display_uri') {
-      //       onUri(event.data as string)
-      //       connector.removeAllListeners()
-      //     }
-      //   })
-
-      //   const chainId = HelpersUtil.caipNetworkIdToNumber(this.getCaipNetwork()?.id)
-
-      //   await connect({ connector, chainId })
-      // },
-
-      // connectExternal: async ({ id, provider, info }) => {
-      //   const connector = wagmiConfig.connectors.find(c => c.id === id)
-      //   if (!connector) {
-      //     throw new Error('connectionControllerClient:connectExternal - connector is undefined')
-      //   }
-      //   if (provider && info && connector.id === ConstantsUtil.EIP6963_CONNECTOR_ID) {
-      //     // @ts-expect-error Exists on EIP6963Connector
-      //     connector.setEip6963Wallet?.({ provider, info })
-      //   }
-      //   const chainId = HelpersUtil.caipNetworkIdToNumber(this.getCaipNetwork()?.id)
-
-      //   await connect({ connector, chainId })
-      // },
-
-      checkInstalled: ids => {
-        const eip6963Connectors = this.getConnectors().filter(c => c.type === 'ANNOUNCED')
-        const injectedConnector = this.getConnectors().find(c => c.type === 'INJECTED')
-
-        if (!ids) {
-          return Boolean(window.ethereum)
+      connectWalletConnect: async onUri => {
+        const connector = wagmiConfig.connectors.find(
+          c => c.id === ConstantsUtil.WALLET_CONNECT_CONNECTOR_ID
+        )
+        if (!connector) {
+          throw new Error('connectionControllerClient:getWalletConnectUri - connector is undefined')
         }
 
-        if (eip6963Connectors.length) {
-          const installed = ids.some(id => eip6963Connectors.some(c => c.info?.rdns === id))
-          if (installed) {
-            return true
+        connector.on('message', event => {
+          if (event.type === 'display_uri') {
+            onUri(event.data as string)
+            connector.removeAllListeners()
           }
-        }
+        })
 
-        if (injectedConnector) {
-          if (!window?.ethereum) {
-            return false
-          }
+        const chainId = HelpersUtil.caipNetworkIdToNumber(this.getCaipNetwork()?.id)
 
-          return ids.some(id => Boolean(window.ethereum?.[String(id)]))
-        }
-
-        return false
+        await connect({ connector, chainId })
       },
+
+      connectExternal: async ({ id, provider, info }) => {
+        const connector = wagmiConfig.connectors.find(c => c.id === id)
+        if (!connector) {
+          throw new Error('connectionControllerClient:connectExternal - connector is undefined')
+        }
+        if (provider && info && connector.id === ConstantsUtil.EIP6963_CONNECTOR_ID) {
+          // @ts-expect-error Exists on EIP6963Connector
+          connector.setEip6963Wallet?.({ provider, info })
+        }
+        const chainId = HelpersUtil.caipNetworkIdToNumber(this.getCaipNetwork()?.id)
+
+        await connect({ connector, chainId })
+      },
+
+      // checkInstalled: ids => {
+      //   const eip6963Connectors = this.getConnectors().filter(c => c.type === 'ANNOUNCED')
+      //   const injectedConnector = this.getConnectors().find(c => c.type === 'INJECTED')
+
+      //   if (!ids) {
+      //     return Boolean(window.ethereum)
+      //   }
+
+      //   if (eip6963Connectors.length) {
+      //     const installed = ids.some(id => eip6963Connectors.some(c => c.info?.rdns === id))
+      //     if (installed) {
+      //       return true
+      //     }
+      //   }
+
+      //   if (injectedConnector) {
+      //     if (!window?.ethereum) {
+      //       return false
+      //     }
+
+      //     return ids.some(id => Boolean(window.ethereum?.[String(id)]))
+      //   }
+
+      //   return false
+      // },
 
       disconnect: async () => {
         await disconnect()
