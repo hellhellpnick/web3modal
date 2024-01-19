@@ -149,19 +149,19 @@ export class Web3Modal extends Web3ModalScaffold {
         await connect({ connector, chainId })
       },
 
-      // connectExternal: async ({ id, provider, info }) => {
-      //   const connector = wagmiConfig.connectors.find(c => c.id === id)
-      //   if (!connector) {
-      //     throw new Error('connectionControllerClient:connectExternal - connector is undefined')
-      //   }
-      //   if (provider && info && connector.id === ConstantsUtil.EIP6963_CONNECTOR_ID) {
-      //     // @ts-expect-error Exists on EIP6963Connector
-      //     connector.setEip6963Wallet?.({ provider, info })
-      //   }
-      //   const chainId = HelpersUtil.caipNetworkIdToNumber(this.getCaipNetwork()?.id)
+      connectExternal: async ({ id, provider, info }) => {
+        const connector = wagmiConfig.connectors.find(c => c.id === id)
+        if (!connector) {
+          throw new Error('connectionControllerClient:connectExternal - connector is undefined')
+        }
+        if (provider && info && connector.id === ConstantsUtil.EIP6963_CONNECTOR_ID) {
+          // @ts-expect-error Exists on EIP6963Connector
+          connector.setEip6963Wallet?.({ provider, info })
+        }
+        const chainId = HelpersUtil.caipNetworkIdToNumber(this.getCaipNetwork()?.id)
 
-      //   await connect({ connector, chainId })
-      // },
+        await connect({ connector, chainId })
+      },
 
       checkInstalled: ids => {
         const eip6963Connectors = this.getConnectors().filter(c => c.type === 'ANNOUNCED')
