@@ -360,6 +360,7 @@ export class Web3Modal extends Web3ModalScaffold {
     //   }];
 
     wagmiConfig.connectors.forEach(({ id, name }) => {
+      console.log(id, 'name:  ', name)
       // wallets.forEach(({ id, name }) => {
       if (![ConstantsUtil.EIP6963_CONNECTOR_ID, ConstantsUtil.EMAIL_CONNECTOR_ID].includes(id) && ['walletconnect', 'browser wallet', 'eip6963'].includes(name.toLowerCase()) === false) {
         w3mConnectors.push({

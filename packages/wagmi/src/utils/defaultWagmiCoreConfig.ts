@@ -70,7 +70,6 @@ export function defaultWagmiConfig({
     connectors.push(new EmailConnector({ chains, options: { projectId } }))
   }
 
-  console.log('chains: ', chains)
   console.log(connectors);
 
   return createConfig({
