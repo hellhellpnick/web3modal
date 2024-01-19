@@ -70,11 +70,12 @@ export function defaultWagmiConfig({
     connectors.push(new EmailConnector({ chains, options: { projectId } }))
   }
 
+  console.log('chains: ', chains)
   console.log(connectors);
 
   return createConfig({
     autoConnect: true,
-    connectors: connectors.filter(connect => ['Coinbase Wallet', 'MetaMask'].includes(connect.name)),
+    connectors: connectors.filter(connect => ['Coinbase Wallet', "MetaMask"].includes(connect.name)),
     publicClient
   })
 }
