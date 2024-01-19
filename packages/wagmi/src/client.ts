@@ -129,39 +129,39 @@ export class Web3Modal extends Web3ModalScaffold {
     }
 
     const connectionControllerClient: ConnectionControllerClient = {
-      connectWalletConnect: async onUri => {
-        const connector = wagmiConfig.connectors.find(
-          c => c.id === ConstantsUtil.WALLET_CONNECT_CONNECTOR_ID
-        )
-        if (!connector) {
-          throw new Error('connectionControllerClient:getWalletConnectUri - connector is undefined')
-        }
+      // connectWalletConnect: async onUri => {
+      //   const connector = wagmiConfig.connectors.find(
+      //     c => c.id === ConstantsUtil.WALLET_CONNECT_CONNECTOR_ID
+      //   )
+      //   if (!connector) {
+      //     throw new Error('connectionControllerClient:getWalletConnectUri - connector is undefined')
+      //   }
 
-        connector.on('message', event => {
-          if (event.type === 'display_uri') {
-            onUri(event.data as string)
-            connector.removeAllListeners()
-          }
-        })
+      //   connector.on('message', event => {
+      //     if (event.type === 'display_uri') {
+      //       onUri(event.data as string)
+      //       connector.removeAllListeners()
+      //     }
+      //   })
 
-        const chainId = HelpersUtil.caipNetworkIdToNumber(this.getCaipNetwork()?.id)
+      //   const chainId = HelpersUtil.caipNetworkIdToNumber(this.getCaipNetwork()?.id)
 
-        await connect({ connector, chainId })
-      },
+      //   await connect({ connector, chainId })
+      // },
 
-      connectExternal: async ({ id, provider, info }) => {
-        const connector = wagmiConfig.connectors.find(c => c.id === id)
-        if (!connector) {
-          throw new Error('connectionControllerClient:connectExternal - connector is undefined')
-        }
-        if (provider && info && connector.id === ConstantsUtil.EIP6963_CONNECTOR_ID) {
-          // @ts-expect-error Exists on EIP6963Connector
-          connector.setEip6963Wallet?.({ provider, info })
-        }
-        const chainId = HelpersUtil.caipNetworkIdToNumber(this.getCaipNetwork()?.id)
+      // connectExternal: async ({ id, provider, info }) => {
+      //   const connector = wagmiConfig.connectors.find(c => c.id === id)
+      //   if (!connector) {
+      //     throw new Error('connectionControllerClient:connectExternal - connector is undefined')
+      //   }
+      //   if (provider && info && connector.id === ConstantsUtil.EIP6963_CONNECTOR_ID) {
+      //     // @ts-expect-error Exists on EIP6963Connector
+      //     connector.setEip6963Wallet?.({ provider, info })
+      //   }
+      //   const chainId = HelpersUtil.caipNetworkIdToNumber(this.getCaipNetwork()?.id)
 
-        await connect({ connector, chainId })
-      },
+      //   await connect({ connector, chainId })
+      // },
 
       checkInstalled: ids => {
         const eip6963Connectors = this.getConnectors().filter(c => c.type === 'ANNOUNCED')

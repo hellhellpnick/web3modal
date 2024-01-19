@@ -38,17 +38,13 @@ export class WuiListWallet extends LitElement {
 
   // -- Render -------------------------------------------- //
   public override render() {
-    // if ((this.name.toLowerCase() !== 'WalletConnect'.toLowerCase()) || (this.name.toLowerCase() !== 'Browser Wallet'.toLowerCase())) {
-    //   return html`
-    //   <button ?disabled=${this.disabled} ontouchstart>
-    //     ${this.templateAllWallets()} ${this.templateWalletImage()}
-    //     <wui-text variant="paragraph-500" color="inherit">${this.name}</wui-text>
-    //     ${this.templateStatus()}
-    //   </button>
-    // `
-    // }
-
-    return null;
+    return html`
+      <button ?disabled=${this.disabled} ontouchstart>
+        ${this.templateAllWallets()} ${this.templateWalletImage()}
+        <wui-text variant="paragraph-500" color="inherit">${this.name}</wui-text>
+        ${this.templateStatus()}
+      </button>
+    `
   }
 
   // -- Private ------------------------------------------- //
