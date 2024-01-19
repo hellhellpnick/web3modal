@@ -108,6 +108,7 @@ export class Web3Modal extends Web3ModalScaffold {
           const connector = wagmiConfig.connectors.find(
             c => c.id === ConstantsUtil.WALLET_CONNECT_CONNECTOR_ID
           )
+          console.log(connector);
           if (!connector) {
             throw new Error(
               'networkControllerClient:getApprovedCaipNetworks - connector is undefined'
