@@ -231,6 +231,7 @@ export class Web3Modal extends Web3ModalScaffold {
   // @ts-expect-error: Overriden state type is correct
   public override getState() {
     const state = super.getState()
+    console.log('getState state: ', state);
 
     return {
       ...state,
@@ -270,6 +271,7 @@ export class Web3Modal extends Web3ModalScaffold {
     if (isConnected && address && chain) {
       const caipAddress: CaipAddress = `${ConstantsUtil.EIP155}:${chain.id}:${address}`
       this.setIsConnected(isConnected)
+      console.log('syncAccount isConnected: ', isConnected);
       this.setCaipAddress(caipAddress)
       await Promise.all([
         this.syncProfile(address, chain),
@@ -299,6 +301,7 @@ export class Web3Modal extends Web3ModalScaffold {
       })
       if (isConnected && address) {
         const caipAddress: CaipAddress = `${ConstantsUtil.EIP155}:${chain.id}:${address}`
+        console.log('syncNetwork  caipAddress: ', caipAddress);
         this.setCaipAddress(caipAddress)
         if (chain.blockExplorers?.default?.url) {
           const url = `${chain.blockExplorers.default.url}/address/${address}`
