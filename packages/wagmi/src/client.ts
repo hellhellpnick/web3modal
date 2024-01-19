@@ -113,6 +113,7 @@ export class Web3Modal extends Web3ModalScaffold {
               'networkControllerClient:getApprovedCaipNetworks - connector is undefined'
             )
           }
+          console.log('getApprovedCaipNetworksData: ', connector);
           const provider = await connector.getProvider()
           const ns = provider.signer?.session?.namespaces
           const nsMethods = ns?.[ConstantsUtil.EIP155]?.methods
