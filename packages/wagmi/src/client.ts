@@ -162,31 +162,31 @@ export class Web3Modal extends Web3ModalScaffold {
         await connect({ connector, chainId })
       },
 
-      checkInstalled: ids => {
-        const eip6963Connectors = this.getConnectors().filter(c => c.type === 'ANNOUNCED')
-        const injectedConnector = this.getConnectors().find(c => c.type === 'INJECTED')
+      // checkInstalled: ids => {
+      //   const eip6963Connectors = this.getConnectors().filter(c => c.type === 'ANNOUNCED')
+      //   const injectedConnector = this.getConnectors().find(c => c.type === 'INJECTED')
 
-        if (!ids) {
-          return Boolean(window.ethereum)
-        }
+      //   if (!ids) {
+      //     return Boolean(window.ethereum)
+      //   }
 
-        if (eip6963Connectors.length) {
-          const installed = ids.some(id => eip6963Connectors.some(c => c.info?.rdns === id))
-          if (installed) {
-            return true
-          }
-        }
+      //   if (eip6963Connectors.length) {
+      //     const installed = ids.some(id => eip6963Connectors.some(c => c.info?.rdns === id))
+      //     if (installed) {
+      //       return true
+      //     }
+      //   }
 
-        if (injectedConnector) {
-          if (!window?.ethereum) {
-            return false
-          }
+      //   if (injectedConnector) {
+      //     if (!window?.ethereum) {
+      //       return false
+      //     }
 
-          return ids.some(id => Boolean(window.ethereum?.[String(id)]))
-        }
+      //     return ids.some(id => Boolean(window.ethereum?.[String(id)]))
+      //   }
 
-        return false
-      },
+      //   return false
+      // },
 
       disconnect: async () => {
         await disconnect()
@@ -361,7 +361,7 @@ export class Web3Modal extends Web3ModalScaffold {
 
     wagmiConfig.connectors.forEach(({ id, name }) => {
       // wallets.forEach(({ id, name }) => {
-      if (![ConstantsUtil.EIP6963_CONNECTOR_ID, ConstantsUtil.EMAIL_CONNECTOR_ID].includes(id) && name != 'WalletConnect' && name != 'Browser Wallet' && name != 'EIP6963') {
+      if (![ConstantsUtil.EIP6963_CONNECTOR_ID, ConstantsUtil.EMAIL_CONNECTOR_ID].includes(id) && ['walletconnect', 'browser wallet', 'eip6963'].includes(name.toLowerCase()) === false) {
         w3mConnectors.push({
           id,
           explorerId: PresetsUtil.ConnectorExplorerIds[id],
