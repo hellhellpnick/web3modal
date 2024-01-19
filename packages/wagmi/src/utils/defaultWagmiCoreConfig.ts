@@ -69,7 +69,7 @@ export function defaultWagmiConfig({
   if (enableEmail === true) {
     connectors.push(new EmailConnector({ chains, options: { projectId } }))
   }
-  console.log(connectors);
+  console.log('connectors1: ', connectors);
   return createConfig({
     autoConnect: true,
     connectors,
