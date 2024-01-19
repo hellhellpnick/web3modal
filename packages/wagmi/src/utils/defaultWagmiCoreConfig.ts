@@ -75,7 +75,8 @@ export function defaultWagmiConfig({
 
   return createConfig({
     autoConnect: true,
-    connectors: connectors.filter(connect => ['Coinbase Wallet', "MetaMask"].includes(connect.name)),
+    connectors,
+    // connectors: connectors.filter(connect => ['Coinbase Wallet', "MetaMask"].includes(connect.name)),
     publicClient
   })
 }
