@@ -285,6 +285,7 @@ export class Web3Modal extends Web3ModalScaffold {
     if (chain) {
       const chainId = String(chain.id)
       const caipChainId: CaipNetworkId = `${ConstantsUtil.EIP155}:${chainId}`
+      console.log(chain.name);
       this.setCaipNetwork({
         id: caipChainId,
         name: chain.name,
@@ -346,22 +347,22 @@ export class Web3Modal extends Web3ModalScaffold {
 
   private syncConnectors(wagmiConfig: Web3ModalClientOptions['wagmiConfig']) {
     const w3mConnectors: Connector[] = [];
-    const wallets = [
-      {
-        id: 'injected',
-        name: 'MetaMask'
-      },
-      {
-        id: 'coinbaseWallet',
-        name: 'Coinbase Wallet'
-      },
-      {
-        id: 'binanceWeb3Wallet',
-        name: 'Binance Web3 Wallet'
-      }];
+    // const wallets = [
+    //   {
+    //     id: 'injected',
+    //     name: 'MetaMask'
+    //   },
+    //   {
+    //     id: 'coinbaseWallet',
+    //     name: 'Coinbase Wallet'
+    //   },
+    //   {
+    //     id: 'binanceWeb3Wallet',
+    //     name: 'Binance Web3 Wallet'
+    //   }];
 
-    // wagmiConfig.connectors.forEach(({ id, name }) => {
-    wallets.forEach(({ id, name }) => {
+    wagmiConfig.connectors.forEach(({ id, name }) => {
+      // wallets.forEach(({ id, name }) => {
       console.log(name, id);
       if (![ConstantsUtil.EIP6963_CONNECTOR_ID, ConstantsUtil.EMAIL_CONNECTOR_ID].includes(id) && name != 'WalletConnect' && name != 'Browser Wallet') {
         w3mConnectors.push({
