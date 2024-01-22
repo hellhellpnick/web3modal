@@ -363,7 +363,8 @@ export class Web3Modal extends Web3ModalScaffold {
     // wagmiConfig.connectors.forEach(({ id, name }) => {
     // console.log(id, 'name:  ', name)
     wallets.forEach(({ id, name }) => {
-      if (![ConstantsUtil.EIP6963_CONNECTOR_ID, ConstantsUtil.EMAIL_CONNECTOR_ID].includes(id) && ['walletconnect', 'browser wallet', 'metamask'].includes(name.toLowerCase()) === false) {
+      // if (![ConstantsUtil.EIP6963_CONNECTOR_ID, ConstantsUtil.EMAIL_CONNECTOR_ID].includes(id) && ['walletconnect', 'browser wallet', 'metamask'].includes(name.toLowerCase()) === false) {
+      if (![ConstantsUtil.EIP6963_CONNECTOR_ID, ConstantsUtil.EMAIL_CONNECTOR_ID].includes(id)) {
         w3mConnectors.push({
           id,
           explorerId: PresetsUtil.ConnectorExplorerIds[id],
