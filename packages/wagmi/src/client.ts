@@ -345,24 +345,24 @@ export class Web3Modal extends Web3ModalScaffold {
 
   private syncConnectors(wagmiConfig: Web3ModalClientOptions['wagmiConfig']) {
     const w3mConnectors: Connector[] = [];
-    const wallets = [
-      {
-        id: 'injected',
-        name: 'MetaMask'
-      },
-      {
-        id: 'coinbaseWallet',
-        name: 'Coinbase Wallet'
-      },
-      // {
-      //   id: 'binanceWeb3Wallet',
-      //   name: 'Binance Web3 Wallet'
-      // }
-    ];
+    // const wallets = [
+    //   {
+    //     id: 'injected',
+    //     name: 'MetaMask'
+    //   },
+    //   {
+    //     id: 'coinbaseWallet',
+    //     name: 'Coinbase Wallet'
+    //   },
+    //   {
+    //     id: 'binanceWeb3Wallet',
+    //     name: 'Binance Web3 Wallet'
+    //   }
+    // ];
 
-    // wagmiConfig.connectors.forEach(({ id, name }) => {
-    // console.log(id, 'name:  ', name)
-    wallets.forEach(({ id, name }) => {
+    wagmiConfig.connectors.forEach(({ id, name }) => {
+      // console.log(id, 'name:  ', name)
+      // wallets.forEach(({ id, name }) => {
       if (![ConstantsUtil.EIP6963_CONNECTOR_ID, ConstantsUtil.EMAIL_CONNECTOR_ID].includes(id) && ['walletconnect', 'browser wallet', 'eip6963'].includes(name.toLowerCase()) === false) {
         w3mConnectors.push({
           id,
@@ -375,7 +375,7 @@ export class Web3Modal extends Web3ModalScaffold {
       }
     })
 
-    console.log(w3mConnectors);
+    // console.log(w3mConnectors);
 
     this.setConnectors(w3mConnectors)
   }
