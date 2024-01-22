@@ -55,9 +55,9 @@ export function defaultWagmiConfig({
     connectors.push(new InjectedConnector({ chains, options: { shimDisconnect: true } }))
   }
 
-  if (enableEIP6963 !== false) {
-    connectors.push(new EIP6963Connector({ chains }))
-  }
+  // if (enableEIP6963 !== false) {
+  //   connectors.push(new EIP6963Connector({ chains }))
+  // }
 
   if (enableCoinbase !== false) {
     connectors.push(
