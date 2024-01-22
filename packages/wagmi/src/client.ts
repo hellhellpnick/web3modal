@@ -360,6 +360,7 @@ export class Web3Modal extends Web3ModalScaffold {
       }
     ];
 
+    console.log(wagmiConfig.connectors);
     // wagmiConfig.connectors.forEach(({ id, name }) => {
     // console.log(id, 'name:  ', name)
     wallets.forEach(({ id, name }) => {
