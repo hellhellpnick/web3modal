@@ -347,6 +347,10 @@ export class Web3Modal extends Web3ModalScaffold {
     const w3mConnectors: Connector[] = [];
     const wallets = [
       {
+        id: "walletConnect",
+        name: "WalletConnect"
+      },
+      {
         id: 'injected',
         name: 'MetaMask'
       },
