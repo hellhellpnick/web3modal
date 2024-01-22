@@ -350,18 +350,6 @@ export class Web3Modal extends Web3ModalScaffold {
         id: "walletConnect",
         name: "WalletConnect"
       },
-      {
-        id: 'injected',
-        name: 'MetaMask'
-      },
-      {
-        id: 'coinbaseWallet',
-        name: 'Coinbase Wallet'
-      },
-      {
-        id: 'binanceWeb3Wallet',
-        name: 'Binance Web3 Wallet'
-      }
     ];
 
     console.log(wagmiConfig.connectors);
